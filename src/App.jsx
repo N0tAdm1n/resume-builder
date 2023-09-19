@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import InputField from "./components/InputField";
 import InfoForm from "./components/InfoForm";
+import Resume from "./components/Resume";
 
 function App() {
 	const [personalData, setPersonalData] = useState({
@@ -26,6 +27,7 @@ function App() {
 				formData={personalData}
 				changeValue={changeValue}
 			/>
+			<Resume data={personalData} />
 		</>
 	);
 }
