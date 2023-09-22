@@ -4,6 +4,7 @@ import InputField from "./components/InputField";
 import InfoForm from "./components/InfoForm";
 import Resume from "./components/Resume";
 import ProjectForm from "./components/ProjectForm";
+import { uid } from "uid";
 
 function App() {
 	const [personalData, setPersonalData] = useState({
@@ -26,14 +27,16 @@ function App() {
 	const [projectFormList, setProjectFormList] = useState([]);
 
 	function handleNewProject() {
+		let id = uid();
+
 		setProjectFormList((prevComponents) => {
 			return [
 				...prevComponents,
 				<ProjectForm
-					key={projectFormList.length}
+					key={id}
 					changeProjectName={changeProjectName}
 					projectData={projectData}
-					index={projectData.length}
+					id={id}
 				/>,
 			];
 		});
@@ -42,7 +45,7 @@ function App() {
 			return [
 				...prevData,
 				{
-					id: projectData.length,
+					id: id,
 					name: "",
 				},
 			];
@@ -63,8 +66,6 @@ function App() {
 			});
 		});
 	}
-
-	console.log(projectData);
 
 	return (
 		<>
