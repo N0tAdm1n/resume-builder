@@ -35,6 +35,7 @@ function App() {
 				<ProjectForm
 					key={id}
 					changeProjectName={changeProjectName}
+					changeProjectDescription={changeProjectDescription}
 					projectData={projectData}
 					id={id}
 				/>,
@@ -47,6 +48,8 @@ function App() {
 				{
 					id: id,
 					name: "",
+					time: "",
+					description: "1",
 				},
 			];
 		});
@@ -67,6 +70,21 @@ function App() {
 		});
 	}
 
+	function changeProjectDescription(value, id) {
+		setProjectData((prevData) => {
+			return prevData.map((project) => {
+				if (project.id == id) {
+					return {
+						...project,
+						description: value,
+					};
+				} else {
+					return project;
+				}
+			});
+		});
+	}
+
 	return (
 		<>
 			<InfoForm
@@ -76,9 +94,15 @@ function App() {
 			{projectFormList}
 			<button onClick={handleNewProject}>Add Project</button>
 			<Resume data={personalData} />
-			{projectData.map((project) => (
-				<p>{project.name}</p>
-			))}
+			{/* output */}
+			{projectData.map((project) => {
+				return (
+					<div>
+						<p>{project.name}</p>
+						<p>{project.description}</p>
+					</div>
+				);
+			})}
 		</>
 	);
 }
